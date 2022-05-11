@@ -34,6 +34,7 @@ class Pelicula:
             :return: Devuelve el nombre de la pelicula
             """
             return self.titulo
+
         def getDuracion(self):
             """
             >>> Titanic = Pelicula('Titanic', 128, 'Drama', False)
@@ -43,6 +44,7 @@ class Pelicula:
             :return: Devuelve la duracion de la pelicula
             """
             return self.duracion
+
         def getGenero(self):
             """
             >>> Titanic = Pelicula('Titanic', 128, 'Drama', False)
@@ -52,6 +54,7 @@ class Pelicula:
             :return: Devuelve la duracion de la pelicula
             """
             return self.genero
+
         def getVisto(self):
             """
             >>> Titanic = Pelicula('Titanic', 128, 'Drama', False)
@@ -62,6 +65,23 @@ class Pelicula:
             """
             return self.visto
 
+        def DatosPelicula(self):
+            """
+            >>> Titanic = Pelicula('Titanic', 128, 'Drama', False)
+            >>> DatosPelicula(Titanic)
+            Titulo: Titanic
+            Duracion: 128
+            Genero: Drama
+            Visto: No
+
+            :return: Devuelve los datos de la pelicula
+            """
+            x = self.visto
+            if x == False:
+                Visto = 'No'
+            else:
+                Visto = 'Si'
+            print("\nTitulo:" +self.getTitulo()+"\nDuracion:" +str(self.getDuracion())+"\nGenero:" +self.getGenero()+"\nVisto:" +Visto)
 
 if __name__ == '__main__':
     import doctest
