@@ -3,7 +3,7 @@ class Capitulo:
     Clase para películas
     """
 
-    def __init__(self, titulo, num_capitulo , duracion,  visto):
+    def __init__(self, titulo, num_capitulo, duracion,  visto):
         """
         >>> Principio = Capitulo('Principio', 1, 45, False)
         >>> Principio.titulo
@@ -61,6 +61,25 @@ class Capitulo:
             :return: Devuelve la duracion de la pelicula
             """
             return self.visto
+
+        def DatosCapitulo(self):
+            """
+            >>> Principio = Capitulo('Principio', 1, 45, False)
+            >>> DatosCapitulo(Principio)
+            Titulo: Principio
+            Duracion: 45
+            Numero Capitulo: 1
+            Visto: No
+
+            :return: Devuelve los datos de la pelicula
+            """
+            x = self.visto
+            if x == False:
+                Visto = 'No'
+            else:
+                Visto = 'Si'
+            print("\nTitulo:" +self.getTitulo()+"\nDuracion:" +str(self.getDuracion())+"\nNumero Capitulo:" +self.getNumCapitulo()+"\nVisto:" +Visto)
+
 
 
 if __name__ == '__main__':
