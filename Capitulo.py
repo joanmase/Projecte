@@ -37,7 +37,7 @@ class Capitulo:
         def getDuracion(self):
             """
             >>> Principio = Capitulo('Principio', 1, 45, False)
-            >>> getDuracion(Capitulo)
+            >>> getDuracion(Principio)
             128
 
             :return: Devuelve la duracion de la pelicula
@@ -46,7 +46,7 @@ class Capitulo:
         def getNumCapitulo(self):
             """
             >>> Principio = Capitulo('Principio', 1, 45, False)
-            >>> getNumCapitulo(Capitulo)
+            >>> getNumCapitulo(Principio)
             1
 
             :return: Devuelve la duracion de la pelicula
@@ -55,12 +55,31 @@ class Capitulo:
         def getVisto(self):
             """
             >>> Principio = Capitulo('Principio', 1, 45, False)
-            >>> getVisto(Capitulo)
+            >>> getVisto(Principio)
             False
 
             :return: Devuelve la duracion de la pelicula
             """
             return self.visto
+
+        def DatosCapitulo(self):
+            """
+            >>> Principio = Capitulo('Principio', 1, 45, False)
+            >>> DatosCapitulo(Principio)
+            Titulo: Principio
+            Duracion: 45
+            Numero Capitulo: 1
+            Visto: No
+
+            :return: Devuelve los datos de la pelicula
+            """
+            x = self.visto
+            if x == False:
+                Visto = 'No'
+            else:
+                Visto = 'Si'
+            print("\nTitulo:" +self.getTitulo()+"\nDuracion:" +str(self.getDuracion())+"\nNumero Capitulo:" +self.getNumCapitulo()+"\nVisto:" +Visto)
+
 
 
 if __name__ == '__main__':
