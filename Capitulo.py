@@ -37,7 +37,7 @@ class Capitulo:
         def getDuracion(self):
             """
             >>> Principio = Capitulo('Principio', 1, 45, False)
-            >>> getDuracion(Capitulo)
+            >>> getDuracion(Principio)
             128
 
             :return: Devuelve la duracion de la pelicula
@@ -46,7 +46,7 @@ class Capitulo:
         def getNumCapitulo(self):
             """
             >>> Principio = Capitulo('Principio', 1, 45, False)
-            >>> getNumCapitulo(Capitulo)
+            >>> getNumCapitulo(Principio)
             1
 
             :return: Devuelve la duracion de la pelicula
@@ -55,7 +55,7 @@ class Capitulo:
         def getVisto(self):
             """
             >>> Principio = Capitulo('Principio', 1, 45, False)
-            >>> getVisto(Capitulo)
+            >>> getVisto(Principio)
             False
 
             :return: Devuelve la duracion de la pelicula
