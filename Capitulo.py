@@ -3,7 +3,7 @@ class Capitulo:
     Clase para películas
     """
 
-    def __init__(self, titulo, num_capitulo , duracion,  visto):
+    def __init__(self, titulo, num_capitulo, duracion,  visto):
         """
         >>> Principio = Capitulo('Principio', 1, 45, False)
         >>> Principio.titulo
