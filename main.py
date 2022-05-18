@@ -1,16 +1,20 @@
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow,QApplication,QWidget
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
 
-#Cargar formulario *.ui
+# Cargar formulario *.ui
 form_class = uic.loadUiType("diseno.ui")[0]
 
-#crear clase MyWindowClass
-class MyWindowClass(QWidget, form_class):
+
+# crear clase MyWindowClass
+class MyWindowClass(QMainWindow, form_class):
     def __init__(self, parent=None):
-        QMainWindow.__init__(self,parent)
+        QMainWindow.__init__(self, parent)
         self.setupUi(self)
-        self.pantallas.setCurrentIndex(1)# activamos la pantalla 1
+        self.pantallas.setCurrentIndex(0)  # activamos la pantalla 1
+
+    def mirarDetalles(self):
+        self.
 
 
 
@@ -19,8 +23,3 @@ if __name__ == '__main__':
     MyWindow = MyWindowClass(None)
     MyWindow.show()
     app.exec_()
-
-
-
-
-
