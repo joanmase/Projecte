@@ -1,3 +1,6 @@
+import pandas as pd
+
+from Base_datos import*
 class Usuario:
     """
     Clase para los usuarios
@@ -14,21 +17,34 @@ class Usuario:
         """
         self.datos = datos
 
-   def Iniciar_Sesion(self):
-        """
-        >>> Usuario1 = Usuario({'usuario1': 'contrasena1'})
-        >>> Iniciar_Sesion(Usuario1)
-        :param self:
-        :return:
-        """
-        print('Usuario:')
-        nick = input()
-        print = ('Contraseña:')
-        contrasena = input()
+    def Iniciar_Sesion(self,nick,contrasena):
+        '''
+        '''
         if contrasena == self.datos.get(nick):
-            return print('Bienvenido'+nick)
+            return True
         else:
-            return print('Usuario incorrecto')
+            return False
+
+    def Crear_Sesion(self,nick,contrasena):
+        '''
+        '''
+        df=pd.DataFrame(nick,contrasena)
+        Usuarios = Base_datos.leer_archivo(Base_datos('Pelis_series.xlsx',sheet_name = 'Usuarios'))
+        num_usuarios = len(Usuarios)
+        xlWriterDF = pd.ExcelWriter('Pelis_series.xlsx')
+        for i in Usuarios.keys():
+            if nick == i:
+                return False
+            else:
+                Usuarios.to_excel(
+                    excel_writer=xlWriterDF,
+                    sheet_name='Usuarios',
+                    na_rep='Missing',
+                    columns=[nick,contrasena],
+                    startcol= num_usuarios+1
+                )
+        return True
+
 
 
 
