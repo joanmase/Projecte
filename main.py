@@ -13,9 +13,15 @@ class MyWindowClass(QMainWindow, form_class):
         self.setupUi(self)
         self.pantallas.setCurrentIndex(0)  # activamos la pantalla 1
 
-    def mirarDetalles(self):
-        self.
+    def btpulsado(self):
+        self.pantallas.setCurrentIndex(1)
+        boton = self.sender()
+        self.texto = ''
+        self.texto = boton.text()
+        self.titulo.setPlainText(self.texto)
 
+    def volver(self):
+        self.pantallas.setCurrentIndex(0)
 
 
 if __name__ == '__main__':
