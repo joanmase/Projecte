@@ -1,3 +1,5 @@
+from Base_datos import *
+
 class Capitulo:
     """
     Clase para películas

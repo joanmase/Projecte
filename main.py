@@ -2,6 +2,12 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
 
+from Clase_Serie import *
+from Classe_Pelicula import *
+
+#include "comboboxdialog.h"
+#include "ui_comboboxdialog.h"
+
 # Cargar formulario *.ui
 form_class = uic.loadUiType("diseno.ui")[0]
 
@@ -15,10 +21,25 @@ class MyWindowClass(QMainWindow, form_class):
 
     def btpulsado(self):
         self.pantallas.setCurrentIndex(1)
-        boton = self.sender()
-        self.texto = ''
-        self.texto = boton.text()
-        self.titulo.setPlainText(self.texto)
+        nombre = self.sender().objectName()
+        pelicula1 = Pelicula(nombre)
+        titulo_pelicula = str(pelicula1.getTitulo())
+        genero_pelicula = pelicula1.getGenero()
+        duracion_pelicula = str(pelicula1.getDuracion())
+        visto_pelicula = pelicula1.getVisto()
+        self.titulo.setText(titulo_pelicula)
+        self.genero.setText(genero_pelicula)
+        self.duracion.setText(duracion_pelicula)
+        self.visto.setText(visto_pelicula)
+
+    def btserie(self):
+        self.pantallas.setCurrentIndex(2)
+        nombre = self.sender().objectName()
+        serie1 = Serie(nombre)
+        titulo_serie = serie1.getTitulo()
+        self.titulo_2.setText(titulo_serie)
+
+
 
     def volver(self):
         self.pantallas.setCurrentIndex(0)
@@ -29,3 +50,4 @@ if __name__ == '__main__':
     MyWindow = MyWindowClass(None)
     MyWindow.show()
     app.exec_()
+
