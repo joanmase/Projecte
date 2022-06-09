@@ -6,44 +6,61 @@ class Usuario:
     Clase para los usuarios
     """
 
-    def __init__(self, datos):
+    def __init__(self, nick, contrasena):
         """
-        >>> Usuario1 = Usuario({'usuario1': 'contrasena1'})
-        >>> Usuario1.datos
-        {'usuario1': 'contrasena1'}
-
-        :param nick:
-        :param contrasena:
         """
-        self.datos = datos
 
-    def Iniciar_Sesion(self,nick,contrasena):
-        '''
-        '''
-        if contrasena == self.datos.get(nick):
-            return True
-        else:
-            return False
+        self.nick = nick
+        self.contrasena = contrasena
 
-    def Crear_Sesion(self,nick,contrasena):
+    def getdatos(self):
+        """
+        """
+        return [self.nick,self.contrasena]
+
+    def Iniciar_Sesion(self):
         '''
         '''
-        df=pd.DataFrame(nick,contrasena)
-        Usuarios = Base_datos.leer_archivo(Base_datos('Pelis_series.xlsx',sheet_name = 'Usuarios'))
-        num_usuarios = len(Usuarios)
-        xlWriterDF = pd.ExcelWriter('Pelis_series.xlsx')
-        for i in Usuarios.keys():
-            if nick == i:
+        Base_datos1 = Base_datos('Usuarios.xlsx','Sheet1')
+        Usuarios = Base_datos1.leer_archivo()
+        user = Usuarios.get('Usuarios')
+        contrasena1 = Usuarios.get('Contrasena')
+        for i in user.keys():
+            if user.get(i) == self.nick:
+                if contrasena1.get(i) == self.contrasena:
+                    return True
+        return False
+
+    def Comprobar_User(self):
+        '''
+        '''
+        Base_datos1 = Base_datos('Usuarios.xlsx','Sheet1')
+        Usuarios = Base_datos1.leer_archivo()
+        user = Usuarios.get('Usuarios')
+        contra = Usuarios.get('Contrasena')
+        for i in user.values():
+            if self.nick == i:
                 return False
-            else:
-                Usuarios.to_excel(
-                    excel_writer=xlWriterDF,
-                    sheet_name='Usuarios',
-                    na_rep='Missing',
-                    columns=[nick,contrasena],
-                    startcol= num_usuarios+1
-                )
+
+
         return True
+
+    def Crear_Sesion(self):
+        '''
+        '''
+        Base_datos1 = Base_datos('Usuarios.xlsx','Sheet1')
+        Usuarios = Base_datos1.leer_archivo()
+        user = Usuarios.get('Usuarios')
+        num_usuarios = len(user)
+        contra = Usuarios.get('Contrasena')
+        user[num_usuarios] = self.nick
+        contra[num_usuarios] = self.contrasena
+        df2 = pd.DataFrame([[Usuarios['Usuarios'][key],Usuarios['Contrasena'][key]]for key in Usuarios['Usuarios'].keys()],
+                           columns = ['Usuarios', 'Contrasena'])
+        df2.to_excel('Usuarios.xlsx',
+            sheet_name='Sheet1')
+
+
 
 
 

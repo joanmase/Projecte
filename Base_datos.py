@@ -5,9 +5,9 @@ instal·lar pandas i openpyxl
 
 class Base_datos:
 
-    def __init__(self, nombre_archivo):
+    def __init__(self, nombre_archivo,nombre_pag):
         """
-        >>> Base_datos1 = Base_datos('Pelis_series.xlsx',sheet_name = 'Peliculas')
+        >>> Base_datos1 = Base_datos('Pelis_series.xlsx','Peliculas')
         >>> Base_datos1.nombre_archivo
         'Pelis_series.xlsx'
 
@@ -15,20 +15,26 @@ class Base_datos:
         :param lista_capitulos:
         """
         self.nombre_archivo = nombre_archivo
+        self.nombre_pag = nombre_pag
 
 
-        def leer_archivo(self):
-            '''
-            >>> Base_datos1 = Base_datos('Pelis_series.xlsx',sheet_name = 'Peliculas')
-            >>> leer_archivo(Base_datos1)
-            {'Numero': {0: 1, 1: 2}, 'Peliculas': {0: 'Iron Man', 1: 'Titanic'}}
-            :param self:
-            :return:
-            '''
-            df = pd.read_excel(self.nombre_archivo)
-            new_dict = df.to_dict()
+    def leer_archivo(self):
+        '''
+        >>> Base_datos1 = Base_datos('Pelis_series.xlsx',sheet_name = 'Peliculas')
+        >>> leer_archivo(Base_datos1)
+        {'Numero': {0: 1, 1: 2}, 'Peliculas': {0: 'Iron Man', 1: 'Titanic'}}
+        '''
+        df = pd.read_excel(self.nombre_archivo,sheet_name=self.nombre_pag)
+        new_dict = df.to_dict()
 
-            return new_dict
+        return new_dict
+
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
 
 
 
