@@ -20,16 +20,16 @@ class Serie:
         titulo = Capitulos_dicc.get('Serie')
         for i in serie.keys():
             if serie.get(i) == self.imagen:
-                return titulo.get(i)
-        return False
+                nombre_serie = titulo.get(i)
+        return nombre_serie
 
     def getGenero(self):
         serie = Capitulos_dicc.get('Fotografia')
         genero = Capitulos_dicc.get('Genero')
         for i in serie.keys():
             if serie.get(i) == self.imagen:
-                return genero.get(i)
-        return False
+                genero_serie = genero.get(i)
+        return genero_serie
 
     def getTemporadas(self):
         serie = Capitulos_dicc.get('Fotografia')
@@ -39,6 +39,11 @@ class Serie:
             if serie.get(i) == self.imagen:
                 todas_temporadas.append(temporadas.get(i))
         return max(todas_temporadas)
+
+
+
+
+
     
 
 
