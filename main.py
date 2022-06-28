@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QMessageBox
 
 from Clase_Serie import *
 from Classe_Pelicula import *
@@ -23,7 +23,7 @@ class MyWindowClass(QMainWindow, form_class):
         self.pantallas.setCurrentIndex(0)  # activamos la pantalla 1
 
     def btpulsado(self):
-        self.pantallas.setCurrentIndex(1)
+        self.pantallas.setCurrentIndex(2)
         nombre = self.sender().objectName()
         pelicula1 = Pelicula(nombre)
         titulo_pelicula = str(pelicula1.getTitulo())
@@ -36,7 +36,7 @@ class MyWindowClass(QMainWindow, form_class):
         self.visto.setText(visto_pelicula)
 
     def btserie(self):
-        self.pantallas.setCurrentIndex(2)
+        self.pantallas.setCurrentIndex(3)
         nombre = self.sender().objectName()
         serie1 = Serie(nombre)
         titulo_serie = serie1.getTitulo()
@@ -90,7 +90,7 @@ class MyWindowClass(QMainWindow, form_class):
             self.capitulo = self.capitulo
 
     def volver(self):
-        self.pantallas.setCurrentIndex(0)
+        self.pantallas.setCurrentIndex(1)
 
     def bt_iniciarsesion(self):
         nickname = self.lineEdit.text()
