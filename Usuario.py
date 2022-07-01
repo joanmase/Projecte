@@ -31,6 +31,19 @@ class Usuario:
                     return True
         return False
 
+    def Es_Admin(self):
+        '''
+        '''
+        Base_datos1 = Base_datos('Usuarios.xlsx','Sheet1')
+        Usuarios = Base_datos1.leer_archivo()
+        user = Usuarios.get('Usuarios')
+        admin = Usuarios.get('Admin')
+        for i in user.keys():
+            if user.get(i) == self.nick:
+                if admin.get(i) == 'Si':
+                    return True
+        return False
+
     def Comprobar_User(self):
         '''
         '''

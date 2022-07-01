@@ -54,3 +54,14 @@ class Pelicula:
             if pelicula.get(i) == self.imagen:
                 return visto.get(i)
         return False
+
+    def Crear_Pelicula(self, titulonuevo, generonuevo, duracionnueva):
+        titulo = Peliculas_dicc.get('Titulo')
+        genero = Peliculas_dicc.get('Genero')
+        duracion = Peliculas_dicc.get('Duracion')
+        for i in titulo.keys():
+            if titulo.get(i) == '':
+                titulo.get(i) == titulonuevo
+                genero.get(i) == generonuevo
+                duracion.get(i) == duracionnueva
+
