@@ -15,6 +15,14 @@ class Pelicula:
         """
         self.imagen=imagen
 
+    def esPelicula(self):
+
+        pelicula = Peliculas_dicc.get('Fotografia')
+        for i in pelicula.keys():
+            if pelicula.get(i) == self.imagen:
+                return True
+        return False
+
     def getTitulo(self):
         """
 

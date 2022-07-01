@@ -1,4 +1,5 @@
 import pandas as pd
+import socket
 
 from Base_datos import*
 class Usuario:
@@ -74,8 +75,24 @@ class Usuario:
             sheet_name='Sheet1')
 
 
+    def servidor(self,peli):
+        HOST = socket.gethostname()
+        PORT = 50111
+        sock = socket.socket()
+        sock.bind((HOST, PORT))
+        sock.listen(5)
+        (clnt, addr) = sock.accept()
+        msg = sock.send(bytes(peli))
+        return True
 
-
+    def client(self):
+        HOST = "192.168.1.186"
+        PORT = 50111
+        sock = socket.socket()
+        sock.connect((HOST, PORT))
+        msg = sock.recv(1024)
+        msg_final = msg.decode("utf-8")
+        return msg_final
 
 
 if __name__ == '__main__':

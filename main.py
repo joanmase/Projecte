@@ -179,6 +179,53 @@ class MyWindowClass(QMainWindow, form_class):
                     Peliculas.cell(row = i, column = 4).value = genero
                     Peliculas.cell(row = i, column = 3).value = duracion
 
+    def compartir(self):
+        nickname = self.lineEdit.text()
+        contrasena = self.lineEdit_2.text()
+        Usuario1 = Usuario(nickname, contrasena)
+        nombre = self.sender().objectName()
+        info = QMessageBox()
+        info.setWindowTitle('Connexión')
+        info.setText('Conectado/a correctamente')
+        info.setIcon(QMessageBox.Information)
+        #Usuario1.servidor(nombre)
+        info.exec()
+
+
+    def connectar(self):
+       nickname = self.lineEdit.text()
+       contrasena = self.lineEdit_2.text()
+       Usuario1 = Usuario(nickname, contrasena)
+       info2 = QMessageBox()
+       info2.setWindowTitle('Connectar')
+       info2.setText('Conectado/a correctamente')
+       info2.setIcon(QMessageBox.Information)
+       #msg = Usuario1.client()
+       info2.exec()
+       #pelicula1 = Pelicula(msg)
+       #serie1 = Serie(msg)
+       #if pelicula1.esPelicula()==True:
+           #titulo_pelicula = str(pelicula1.getTitulo())
+           #genero_pelicula = pelicula1.getGenero()
+           #duracion_pelicula = str(pelicula1.getDuracion())
+           #visto_pelicula = pelicula1.getVisto()
+           #self.titulo.setText(titulo_pelicula)
+           #self.genero.setText(genero_pelicula)
+           #self.duracion.setText(duracion_pelicula)
+           #self.visto.setText(visto_pelicula)
+           #self.pantallas.setCurrentIndex(2)
+       #elif serie1.esSerie()==True:
+           #titulo_serie = serie1.getTitulo()
+           #self.tituloserie.setText(titulo_serie)
+           #genero_serie = serie1.getGenero()
+           #self.genero_2.setText(genero_serie)
+           #self.suprimirTemporadas()
+           #self.listaTemporadas(serie1)
+           #self.suprimirCapitulos()
+           #self.listaCapitulos()
+           #self.getDuracionVistoCapitulo()
+           #self.pantallas.setCurrentIndex(3)
+
 
 
 

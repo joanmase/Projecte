@@ -15,6 +15,13 @@ class Serie:
         """
         self.imagen = imagen
 
+    def esSerie(self):
+        serie = Capitulos_dicc.get('Fotografia')
+        for i in serie.keys():
+            if serie.get(i) == self.imagen:
+                return True
+        return False
+
     def getTitulo(self):
         serie = Capitulos_dicc.get('Fotografia')
         titulo = Capitulos_dicc.get('Serie')
