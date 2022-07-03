@@ -10,7 +10,7 @@ from Clase_Temporada import *
 from Clase_Capitulo import *
 from Usuario import *
 
-with pd.ExcelFile("Pelis_series.xlsx") as xls:
+with pd.ExcelFile("Pelis.xlsx") as xls:
     Peliculas = pd.read_excel(xls, "Peliculas")
     Peliculas_dicc = Peliculas.to_dict()
 
@@ -166,29 +166,53 @@ class MyWindowClass(QMainWindow, form_class):
         titulo = self.titulopelicula.text()
         duracion = self.duracionpelicula.text()
         genero = self.generopelicula.text()
+        Pelicula1 = Pelicula(titulo)
         if titulo == '' or duracion == '' or genero == '':
             error2 = QMessageBox()
             error2.setWindowTitle('Error')
             error2.setText('Faltan campos por rellenar.')
             error2.setIcon(QMessageBox.Critical)
+            error2.exec()
+        elif Pelicula1.esPelicula()==True:
+            error = QMessageBox()
+            error.setWindowTitle('Error')
+            error.setText('La película ya se encuentra en la plataforma.')
+            error.setIcon(QMessageBox.Critical)
+            error.exec()
         else:
-            titulonuevo = Peliculas_dicc.get('Titulo')
-            for i in titulonuevo.keys():
-                if titulonuevo.get(i) == '':
-                    Peliculas.cell(row = i, column = 2).value = titulo
-                    Peliculas.cell(row = i, column = 4).value = genero
-                    Peliculas.cell(row = i, column = 3).value = duracion
+            Pelicula1.Crear_Pelicula(titulo,duracion,genero)
+            info = QMessageBox()
+            info.setWindowTitle('Pelicula añadida')
+            info.setText('La película ha sido añadida.')
+            info.setIcon(QMessageBox.Information)
+            self.titulopelicula.clear()
+            self.duracionpelicula.clear()
+            self.generopelicula.clear()
+            info.exec()
+
+
 
     def compartir(self):
         nickname = self.lineEdit.text()
         contrasena = self.lineEdit_2.text()
         Usuario1 = Usuario(nickname, contrasena)
-        nombre = self.sender().objectName()
+        pelicula = Peliculas_dicc.get('Fotografia')
+        titulo = Peliculas_dicc.get('Titulo')
+        serie = Capitulos_dicc.get('Fotografia')
+        titulo2 = Capitulos_dicc.get('Serie')
+        for i in titulo.keys():
+            if str(titulo.get(i)) == str(self.titulo.text()):
+                nombre = str(pelicula.get(i))
+
+        for i in titulo2.keys():
+            if titulo2.get(i) == self.tituloserie.text():
+                nombre = serie.get(i)
+        print(nombre)
         info = QMessageBox()
         info.setWindowTitle('Connexión')
         info.setText('Conectado/a correctamente')
         info.setIcon(QMessageBox.Information)
-        #Usuario1.servidor(nombre)
+        Usuario1.servidor(nombre)
         info.exec()
 
 
@@ -200,31 +224,32 @@ class MyWindowClass(QMainWindow, form_class):
        info2.setWindowTitle('Connectar')
        info2.setText('Conectado/a correctamente')
        info2.setIcon(QMessageBox.Information)
-       #msg = Usuario1.client()
+       msg = Usuario1.client()
        info2.exec()
-       #pelicula1 = Pelicula(msg)
-       #serie1 = Serie(msg)
-       #if pelicula1.esPelicula()==True:
-           #titulo_pelicula = str(pelicula1.getTitulo())
-           #genero_pelicula = pelicula1.getGenero()
-           #duracion_pelicula = str(pelicula1.getDuracion())
-           #visto_pelicula = pelicula1.getVisto()
-           #self.titulo.setText(titulo_pelicula)
-           #self.genero.setText(genero_pelicula)
-           #self.duracion.setText(duracion_pelicula)
-           #self.visto.setText(visto_pelicula)
-           #self.pantallas.setCurrentIndex(2)
-       #elif serie1.esSerie()==True:
-           #titulo_serie = serie1.getTitulo()
-           #self.tituloserie.setText(titulo_serie)
-           #genero_serie = serie1.getGenero()
-           #self.genero_2.setText(genero_serie)
-           #self.suprimirTemporadas()
-           #self.listaTemporadas(serie1)
-           #self.suprimirCapitulos()
-           #self.listaCapitulos()
-           #self.getDuracionVistoCapitulo()
-           #self.pantallas.setCurrentIndex(3)
+       print(msg)
+       pelicula1 = Pelicula(msg)
+       serie1 = Serie(msg)
+       if pelicula1.esPelicula()==True:
+           titulo_pelicula = str(pelicula1.getTitulo())
+           genero_pelicula = pelicula1.getGenero()
+           duracion_pelicula = str(pelicula1.getDuracion())
+           visto_pelicula = pelicula1.getVisto()
+           self.titulo.setText(titulo_pelicula)
+           self.genero.setText(genero_pelicula)
+           self.duracion.setText(duracion_pelicula)
+           self.visto.setText(visto_pelicula)
+           self.pantallas.setCurrentIndex(2)
+       elif serie1.esSerie()==True:
+           titulo_serie = serie1.getTitulo()
+           self.tituloserie.setText(titulo_serie)
+           genero_serie = serie1.getGenero()
+           self.genero_2.setText(genero_serie)
+           self.suprimirTemporadas()
+           self.listaTemporadas(serie1)
+           self.suprimirCapitulos()
+           self.listaCapitulos()
+           self.getDuracionVistoCapitulo()
+           self.pantallas.setCurrentIndex(3)
 
 
 

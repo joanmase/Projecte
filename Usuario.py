@@ -81,8 +81,14 @@ class Usuario:
         sock = socket.socket()
         sock.bind((HOST, PORT))
         sock.listen(5)
-        (clnt, addr) = sock.accept()
-        msg = sock.send(bytes(peli))
+        while True:
+            # now our endpoint knows about the OTHER endpoint.
+            (clnt, addr) = sock.accept()
+
+            clnt.send(bytes(peli, "utf-8"))
+            break
+        #(clnt, addr) = sock.accept()
+        #msg = sock.send(bytes(peli))
         return True
 
     def client(self):

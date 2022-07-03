@@ -1,6 +1,6 @@
 import pandas as pd
 import openpyxl
-with pd.ExcelFile("Pelis_series.xlsx") as xls:
+with pd.ExcelFile("Series.xlsx") as xls:
     Capitulos = pd.read_excel(xls, "Capitulo")
     Capitulos_dicc = Capitulos.to_dict()
 
